@@ -1,0 +1,53 @@
+# .github/workflows/main.yml
+name: Build & Upload Modpack
+
+on:
+  push:
+    paths:
+      - 'server/**'
+      - 'mods/**'
+      - 'config/**'
+
+jobs:
+  build-server:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Zip server files
+        run: |
+          cd server
+          zip -r ../tecmod-server-pack.zip ./*
+      
+      - name: Upload server artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tecmod-server-pack
+          path: tecmod-server-pack.zip
+
+  upload-curseforge:
+    needs: build-server
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: tecmod-server-pack
+          path: .
+
+      - name: Upload to CurseForge
+        uses: itsmeow/curseforge-upload@v3.1.2
+        with:
+          token: ${{ secrets.CURSEFORGE_API_TOKEN }}
+          project_id: "<SEU_PROJECT_ID>"
+          game_endpoint: "minecraft"
+          file_path: "tecmod-server-pack.zip"
+          game_versions: "1.21.1"
+          release_type: "beta"
+          display_name: "Tecmod Arena BR Server Pack"
+          changelog: "Atualização automática via GitHub Actions"
