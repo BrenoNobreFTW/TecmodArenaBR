@@ -1,0 +1,27 @@
+_specver: 2
+
+modpack:
+  name: Tecmod Arena BR
+  description: "Advanced Tech + RPG arena experience on NeoForge 1.21.1 | Combinação de tecnologia e arenas RPG no NeoForge 1.21.1."
+
+install:
+  mcVersion: 1.21.1
+  loaderVersion: 21.1.185
+  modpackUrl: https://github.com/SeuUsuario/tecmod-arena-br/releases/download/v0.8/tecmod-arena-br-0.8.zip
+  installerUrl: "https://maven.neoforged.net/releases/net/neoforged/neoforge/{{@loaderVersion@}}/neoforge-{{@loaderVersion@}}-installer.jar"
+  installerArguments:
+    - "--installServer"
+  modpackFormat: curse
+  checkFolder: true
+  installLoader: true
+  installPack: true
+
+launch:
+  maxRam: 16G
+  minRam: 8G
+  autoRestart: true
+  javaArgs:
+    - "@user_jvm_args.txt"
+  startCommand:
+    - "@libraries/net/neoforged/neoforge/{{@loaderVersion@}}/{{@os@}}_args.txt"
+    - "nogui"

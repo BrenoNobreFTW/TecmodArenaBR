@@ -42,10 +42,7 @@
 1. Instale o *NeoForge 1.21.1* no seu launcher.  
 2. Copie `mods/`, `config/` e `scripts/` deste repositório para sua pasta `.minecraft/`.  
 3. Verifique estes arquivos `.jar`:
-
-   - `serilumsrpgbundle-1.21.1-2.4.jar`  
-   - `collective-<versão>-1.21.x.jar`  
-   - `pneumaticcraft-repressurized-8.2.12+mc1.21.1.jar`
+`
 
 4. Inicie o Minecraft com o perfil NeoForge.
 
